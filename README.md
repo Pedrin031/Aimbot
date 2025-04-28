@@ -1,14 +1,11 @@
--- // Pedrin Hub UI
 local player = game.Players.LocalPlayer
 local uis = game:GetService("UserInputService")
 local RunService = game:GetService("RunService")
 local camera = workspace.CurrentCamera
 
--- Criar a tela
 local ScreenGui = Instance.new("ScreenGui", game.CoreGui)
 ScreenGui.Name = "PedrinHub"
 
--- Criar o quadro principal
 local Frame = Instance.new("Frame", ScreenGui)
 Frame.Size = UDim2.new(0, 250, 0, 180)
 Frame.Position = UDim2.new(0.05, 0, 0.1, 0)
@@ -17,7 +14,6 @@ Frame.BorderSizePixel = 0
 Frame.Active = true
 Frame.Draggable = true
 
--- Título
 local Title = Instance.new("TextLabel", Frame)
 Title.Size = UDim2.new(1, 0, 0, 30)
 Title.Position = UDim2.new(0, 0, 0, 0)
@@ -28,7 +24,6 @@ Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 Title.Font = Enum.Font.GothamBold
 Title.TextSize = 20
 
--- Botão Discord
 local CopyButton = Instance.new("TextButton", Frame)
 CopyButton.Size = UDim2.new(0.8, 0, 0, 30)
 CopyButton.Position = UDim2.new(0.1, 0, 0, 40)
@@ -41,7 +36,6 @@ CopyButton.MouseButton1Click:Connect(function()
     setclipboard("https://discord.gg/jfKVrrMx")
 end)
 
--- Slider Label
 local SliderLabel = Instance.new("TextLabel", Frame)
 SliderLabel.Size = UDim2.new(1, -20, 0, 30)
 SliderLabel.Position = UDim2.new(0, 10, 0, 80)
@@ -51,7 +45,6 @@ SliderLabel.Font = Enum.Font.Gotham
 SliderLabel.TextSize = 16
 SliderLabel.Text = "Tamanho da Bola: 150"
 
--- Variáveis de Aimbot
 local AimbotActive = false
 local AimbotRadius = 150
 local Circle = Drawing.new("Circle")
@@ -62,7 +55,6 @@ Circle.Transparency = 0.7
 Circle.Filled = false
 Circle.Visible = true
 
--- Slider simples (clique para mudar)
 local SliderButton = Instance.new("TextButton", Frame)
 SliderButton.Size = UDim2.new(0.8, 0, 0, 30)
 SliderButton.Position = UDim2.new(0.1, 0, 0, 120)
@@ -80,7 +72,6 @@ SliderButton.MouseButton1Click:Connect(function()
     SliderLabel.Text = "Tamanho da Bola: "..AimbotRadius
 end)
 
--- Aimbot Função
 function GetClosestPlayer()
     local closestPlayer = nil
     local shortestDistance = math.huge
@@ -100,7 +91,6 @@ function GetClosestPlayer()
     return closestPlayer
 end
 
--- Travar Mira
 RunService.RenderStepped:Connect(function()
     local mousePos = uis:GetMouseLocation()
     Circle.Position = Vector2.new(mousePos.X, mousePos.Y)
@@ -113,7 +103,6 @@ RunService.RenderStepped:Connect(function()
     end
 end)
 
--- Tecla para ativar/desativar
 uis.InputBegan:Connect(function(key, gpe)
     if not gpe then
         if key.KeyCode == Enum.KeyCode.X then
